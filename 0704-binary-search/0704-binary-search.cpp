@@ -15,7 +15,7 @@ public:
            return binary(nums , t , m+1 , e);
         }
         
-        return -1;
+        // return -1;
     }
     int search(vector<int>& nums, int target) {
         
