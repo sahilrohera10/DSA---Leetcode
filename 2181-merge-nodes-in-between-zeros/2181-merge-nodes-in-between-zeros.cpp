@@ -11,33 +11,6 @@
 class Solution {
 public:
     
-       void insertAtHead(ListNode*& newHead , int sum){
-        ListNode* n = new ListNode(sum);
-	    n->next = newHead;
-	    newHead = n;
-    }
-    
-    ListNode* getTail(ListNode* newHead){
-    while(newHead->next != NULL){
-        newHead = newHead->next ;
-    }
-
-    return newHead;
-}
-    
-    
-    void insertAtTail(ListNode*& newHead , int sum){
-       if(newHead == NULL){
-       insertAtHead(newHead , sum);
-       return ;
-  }
-
-        ListNode* tail = getTail(newHead);
-        ListNode* n = new ListNode(sum);
-        tail->next = n; 
-    }
-    
-    
     ListNode* mergeNodes(ListNode* head) {
         
         ListNode* newHead = NULL;
@@ -60,7 +33,6 @@ public:
                  tempHead->next = n;
                  tempHead = tempHead->next;     
              }
-             // insertAtTail(newHead , sum);  
               sum = 0 ;
          }
          cur = cur->next;
