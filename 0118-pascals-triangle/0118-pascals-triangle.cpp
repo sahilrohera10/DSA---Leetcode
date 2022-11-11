@@ -13,7 +13,7 @@ public:
         //     cout <<"  ";
         for(int j = 0; j <= i; j++)
         {
-            if (j == 0 || i == 0)
+            if (j == 0 )
                 coef = 1;
             else
                 coef = coef*(i-j+1)/j;
