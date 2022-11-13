@@ -23,35 +23,7 @@ public:
         return ans;
        
         
-//         int i = 0;
-     
-//         while(i<n){
-//           if(nums[i]>0){
-//               positive.push_back(nums[i]);
-//           }
-//         }
-//         i=0;
-//         while(i<n){
-//           if(nums[i]<0){
-//               negative.push_back(nums[i]);
-//           }
-//         }
-        
-//         int j = 0;
-//         int k = 0;
-//         // nums[0] = positive[0];
-//         for(int i = 0;i<n;i++){
-//             if(i%2==0){
-//                 nums[i] = positive[j];
-//                 j++;
-//             }else{
-//                 nums[i] = negative[k];
-//                 k++;
-//             }
-//         }
 
-        
-//         return nums;
         
         
         
