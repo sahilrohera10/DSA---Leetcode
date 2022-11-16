@@ -15,14 +15,7 @@ public:
         int e = n ;
         int m ;
         int ans = 0;
-        
-        // vector<int> v;
-        // v.push_back(0);
-        // for(int i=1 ; i<=n ; i++)
-        // {
-        //     v.push_back(1);
-        // }
-        
+
         while(e>=s)
         {
             m = s+(e-s)/2;
