@@ -7,35 +7,35 @@ public:
         
         // approch 1 : using hash map
         
-//         map <int , int> mp;
-//         vector<int> ans ;
-//         int n = nums.size();
-//         for(int i = 0;i<n ;i++){
-//             mp[nums[i]]++;
-//         }
-        
-//         for(auto x : mp){
-//             if(x.second ==2 ){
-//                 ans.push_back(x.first);
-//             }
-//         }
-        
-//         return ans ;
-        
-        //approch 2 : sorting the vector
-        
-        sort(nums.begin() , nums.end());
-        
+        map <int , int> mp;
         vector<int> ans ;
         int n = nums.size();
+        for(int i = 0;i<n ;i++){
+            mp[nums[i]]++;
+        }
         
-        for(int i = 0 ; i< n-1 ; i++){
-            if(nums[i] == nums[i+1]){
-                ans.push_back(nums[i]);
+        for(auto x : mp){
+            if(x.second ==2 ){
+                ans.push_back(x.first);
             }
         }
         
         return ans ;
+        
+        //approch 2 : sorting the vector
+        
+//         sort(nums.begin() , nums.end());
+        
+//         vector<int> ans ;
+//         int n = nums.size();
+        
+//         for(int i = 0 ; i< n-1 ; i++){
+//             if(nums[i] == nums[i+1]){
+//                 ans.push_back(nums[i]);
+//             }
+//         }
+        
+//         return ans ;
         
         
     }
