@@ -25,6 +25,64 @@ public:
    
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
         
+        //......................using vector.........................//
+        
+//         ListNode* h1 = reverse(l1 , NULL);
+//         ListNode* h2 = reverse(l2 , NULL);
+//         // return h1;
+        
+//         vector<int> ans ;
+//         int sum = 0;
+//         int carry = 0;
+//         int d = 0;
+//         while(h1 && h2){
+//             sum = h1->val + h2->val + carry;
+//             d = sum%10;
+//             ans.push_back(d);
+//             carry = sum/10;
+//             h1 = h1->next;
+//             h2 = h2->next;
+//         }
+        
+//         while(h1){
+//             sum = h1->val + carry;
+//             d = sum%10;
+//             ans.push_back(d);
+//             carry = sum/10;
+//             h1 = h1->next;
+//         }
+//         while(h2){
+//             sum = h2->val + carry;
+//             d = sum%10;
+//             ans.push_back(d);
+//             carry = sum/10;          
+//             h2 = h2->next;
+//         }
+        
+//         if(carry){
+//             ans.push_back(carry);
+//         }
+        
+//         int n = ans.size();
+//         ListNode* head ;
+//         ListNode* newNode;
+//         ListNode* newN ;
+//         for(int i = 0 ;i<n ;i++){
+//             if(i==0){
+//                 head = new ListNode(ans[i]);
+//                 newN = head;             
+//             }else{
+//                 newNode = new ListNode(ans[i]);
+//                 newN->next = newNode;
+//                 newN = newNode;
+//             }
+//         }
+        
+//         ListNode* ansHead = reverse(head , NULL);
+//         return ansHead;
+        
+        
+        //.................using direct LL.......................//
         ListNode* h1 = reverse(l1 , NULL);
         ListNode* h2 = reverse(l2 , NULL);
         // return h1;
@@ -33,52 +91,79 @@ public:
         int sum = 0;
         int carry = 0;
         int d = 0;
+        ListNode* head ;
+        ListNode* newNode;
+        ListNode* newN ;
+        int i = 0;
         while(h1 && h2){
             sum = h1->val + h2->val + carry;
             d = sum%10;
-            ans.push_back(d);
+            if(i==0){
+            // ans.push_back(d);
+                head = new ListNode(d);
+                newN = head;
+                i++;
+               carry = sum/10;
+                // cout<<carry<<" ";
+           
+            }else{
+                 // ans.push_back(d);
+            newNode = new ListNode(d);
+                newN->next = newNode;
+                newN = newNode;
             carry = sum/10;
-            h1 = h1->next;
+        
+            }
+             h1 = h1->next;
             h2 = h2->next;
+           
         }
         
         while(h1){
             sum = h1->val + carry;
             d = sum%10;
-            ans.push_back(d);
+            // ans.push_back(d);
+            newNode = new ListNode(d);
+                newN->next = newNode;
+                newN = newNode;
             carry = sum/10;
             h1 = h1->next;
         }
         while(h2){
             sum = h2->val + carry;
             d = sum%10;
-            ans.push_back(d);
+            // ans.push_back(d);
+            newNode = new ListNode(d);
+            newN->next = newNode;
+            newN = newNode;
             carry = sum/10;          
             h2 = h2->next;
         }
         
         if(carry){
-            ans.push_back(carry);
-        }
-        
-        int n = ans.size();
-        ListNode* head ;
-        ListNode* newNode;
-        ListNode* newN ;
-        for(int i = 0 ;i<n ;i++){
-            if(i==0){
-                head = new ListNode(ans[i]);
-                newN = head;             
-            }else{
-                newNode = new ListNode(ans[i]);
+            // ans.push_back(carry);
+            newNode = new ListNode(carry);
                 newN->next = newNode;
                 newN = newNode;
-            }
         }
+        
+//         int n = ans.size();
+//         ListNode* head ;
+//         ListNode* newNode;
+//         ListNode* newN ;
+//         for(int i = 0 ;i<n ;i++){
+//             if(i==0){
+//                 head = new ListNode(ans[i]);
+//                 newN = head;             
+//             }else{
+//                 newNode = new ListNode(ans[i]);
+//                 newN->next = newNode;
+//                 newN = newNode;
+//             }
+//         }
         
         ListNode* ansHead = reverse(head , NULL);
         return ansHead;
-    
         
     }
 };
