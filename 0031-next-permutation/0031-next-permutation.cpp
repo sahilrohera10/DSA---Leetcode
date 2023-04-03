@@ -3,8 +3,26 @@ public:
 
     
     void nextPermutation(vector<int>& nums) {
+        //using inbuilt function (STL)
         
-        next_permutation(nums.begin() , nums.end());
+        // next_permutation(nums.begin() , nums.end());
+        
+        
+        
+        
+        //using 2 pointers 
+        
+        int i=nums.size()-1,j=nums.size()-1;
+        
+        while(i && nums[i-1]>=nums[i]) i--;
+        
+        if(!i) return reverse(nums.begin(),nums.end());
+        
+        while(nums[i-1]>=nums[j]) j--;
+        
+        swap(nums[i-1],nums[j]);
+        
+        return reverse(nums.begin()+i,nums.end());
         
 //         int n = nums.size();
         
