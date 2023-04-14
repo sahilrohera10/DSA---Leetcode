@@ -1,46 +1,19 @@
 class Solution {
 public:
     
-    int solve(int n , vector<int>& dp){
+    int f(int n , vector<int>& dp)
+    {
+        if(n<=1) return n;
         
-        // base case
-        if(n <= 1){
-            return n;
-        }
+        if(dp[n] != -1) return dp[n]; // checking if the value of the current                                       call is present in the dp vector or not
         
-        if(dp[n] != -1){
-            return dp[n];
-        }
-        
-        //recursive case
-        dp[n] = solve(n-1 , dp) + solve(n-2 , dp);
-        
-        return dp[n];
-        
+        return dp[n] = f(n-1 , dp) + f(n-2 , dp);  // store the value of the                                                    current function call into                                                    the dp vector and return .
     }
+    
+    
+    
     int fib(int n) {
-        
-        
-        //PURELY RECURSION
-        
-//         //base case
-//         if(n==0 || n==1){
-//             return n;
-//         }
-        
-//         //recursive case
-//         return fib(n-1) + fib(n-2);
-        
-        
-        
-        
-        //DP APPROACH : (TOP - DOWN)
-        
-   vector<int> dp(n+1,-1) ;
-      
-        
-       return solve(n , dp);
-        
-        
+        vector<int> dp(n+1 , -1) ;  // step1 - declaring the dp vector
+        return f(n , dp);
     }
 };
