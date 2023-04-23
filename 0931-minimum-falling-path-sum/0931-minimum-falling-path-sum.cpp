@@ -22,11 +22,7 @@ public:
         int mini = 1e9 ;
         for(int j = 0 ; j < m ; j++){
           mini = min(mini , find(n-1 , j , matrix , dp) ) ;
-            // for(int i = 0 ; i<n ; i++){
-            //     for(int k = 0 ; k<m ; k++){
-            //         dp[i][k] = -1 ;
-            //     }
-            // }
+         
         }
         
         return mini ;
