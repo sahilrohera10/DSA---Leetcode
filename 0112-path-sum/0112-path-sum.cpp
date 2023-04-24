@@ -11,34 +11,27 @@
  */
 class Solution {
 public:
-    
-    bool findAns(TreeNode* root , int targetSum)
-    {
-        if(root == NULL){
+    bool rootToLeafPathSum(TreeNode* root, int targetSum, int sum){
+        if(root == nullptr)
             return false;
+        if(root -> left == nullptr && root -> right == nullptr){
+            sum = sum + root -> val;
+            // cout<<sum;
+            if(sum == targetSum)
+                return true;   
+            else
+            {
+                // sum=sum-root->val;
+                return false;
+            }
         }
-        
-        targetSum = targetSum - root->val;
-        if(targetSum == 0 && root->left == NULL && root->right == NULL){
-            return true;
-        }
-        // if(targetSum < 0 ){
-        //     return false;
-        // }
-        
-        
-        
-       if(findAns(root->left , targetSum) == true) return true;
-       if(findAns(root->right , targetSum) == true) return true;
-
-        return false;
-        
+        bool x= rootToLeafPathSum(root -> left, targetSum, sum + root -> val)  ;  
+        cout<<sum<<" ";
+        bool y= rootToLeafPathSum(root -> right, targetSum, sum + root -> val);
+        return x||y;
     }
-    
-    
-    
     bool hasPathSum(TreeNode* root, int targetSum) {
-        // bool ans = false ;
-      return findAns(root , targetSum);
+        int sum = 0;
+        return rootToLeafPathSum(root, targetSum, sum);
     }
 };
