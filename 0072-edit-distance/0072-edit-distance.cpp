@@ -27,7 +27,7 @@ public:
         int m = word2.size();
         
         // optimising with memoization
-        vector<vector<int>> dp(n , vector<int>(m+1 , -1));
+        vector<vector<int>> dp(n , vector<int>(m , -1));
         
         int ans = find(n-1,m-1 , word1, word2, dp);
         
