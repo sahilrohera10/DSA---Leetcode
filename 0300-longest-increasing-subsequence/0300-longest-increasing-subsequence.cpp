@@ -25,23 +25,44 @@ public:
         
         // tabulation 
        
-         vector<vector<int>> dp(n+1 , vector<int>(n+1 , 0));
-        // for(int p = 0 ; p<=n ; p++){
-        //     dp[n][p] = 0 ;
-        // }
-        for(int i = n-1 ;i>=0 ; i--){
-            for(int p = i-1 ; p>=-1 ; p--){
-                 // not take
-                int len = 0 + dp[i+1][p+1];
+         // vector<vector<int>> dp(n+1 , vector<int>(n+1 , 0));
+    
+//         for(int i = n-1 ;i>=0 ; i--){
+//             for(int p = i-1 ; p>=-1 ; p--){
+//                  // not take
+//                 int len = 0 + dp[i+1][p+1];
 
-                //take
-                if(p==-1 || nums[i] > nums[p]){
-                    len = max(len , 1+dp[i+1][i+1]);
-                }
+//                 //take
+//                 if(p==-1 || nums[i] > nums[p]){
+//                     len = max(len , 1+dp[i+1][i+1]);
+//                 }
 
-                dp[i][p+1] = len;
+//                 dp[i][p+1] = len;
+//             }
+//         }
+//          return dp[0][-1+1];
+        
+        
+        // using binary search 
+        
+        vector<int> temp;
+        temp.push_back(nums[0]);
+        int len = 1;
+        
+        for(int i = 1 ; i<n ; i++)
+        {
+            if(nums[i] > temp.back()){
+                temp.push_back(nums[i]);
+                len++;
+            }else{
+                vector<int>::iterator idx ;
+                idx = lower_bound(temp.begin() , temp.end() , nums[i]);
+                temp[idx-temp.begin()] = nums[i];
             }
         }
-         return dp[0][-1+1];
+        
+        return len;
+        
+        
     }
 };
