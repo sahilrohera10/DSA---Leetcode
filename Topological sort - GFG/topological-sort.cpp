@@ -3,45 +3,116 @@
 using namespace std;
 
 // } Driver Code Ends
+
+
+
+
+// topo sort using DFS
+
+// class Solution
+// {
+//     void dfs(int i , vector<int>& vis , stack<int>& st , vector<int> adj[])
+//     {
+//         vis[i] = 1;
+        
+//         for(auto x : adj[i]){
+//             if(!vis[x]){
+//                 dfs(x , vis , st , adj);
+//             }
+//         }
+//         st.push(i);
+//     }
+    
+// 	public:
+// 	//Function to return list containing vertices in Topological order. 
+// 	vector<int> topoSort(int V, vector<int> adj[]) 
+// 	{
+	    
+// 	    vector<int> vis(V , 0);
+// 	    stack<int> st ; 
+	    
+// 	    for(int i  = 0 ;i<V ; i++){
+// 	        if(!vis[i]){
+// 	            dfs(i , vis , st , adj);
+// 	        }
+// 	    }
+	    
+// 	    vector<int> ans ;
+// 	    while(!st.empty()){
+// 	        int t = st.top();
+// 	        ans.push_back(t);
+// 	        st.pop();
+// 	    }
+	    
+// 	    return ans;
+	    
+// 	}
+// };
+
+
+// Topo sort using BFS || Kahn's Algorithm
 class Solution
 {
-    void dfs(int i , vector<int>& vis , stack<int>& st , vector<int> adj[])
-    {
-        vis[i] = 1;
-        
-        for(auto x : adj[i]){
-            if(!vis[x]){
-                dfs(x , vis , st , adj);
-            }
-        }
-        st.push(i);
-    }
-    
 	public:
 	//Function to return list containing vertices in Topological order. 
 	vector<int> topoSort(int V, vector<int> adj[]) 
 	{
 	    
-	    vector<int> vis(V , 0);
-	    stack<int> st ; 
-	    
-	    for(int i  = 0 ;i<V ; i++){
-	        if(!vis[i]){
-	            dfs(i , vis , st , adj);
-	        }
-	    }
-	    
-	    vector<int> ans ;
-	    while(!st.empty()){
-	        int t = st.top();
-	        ans.push_back(t);
-	        st.pop();
-	    }
-	    
-	    return ans;
+	   int indegree[V] = {0};
+	   
+	   for(int i = 0 ; i<V ; i++)       // preparing our indegrees
+	   {
+	       	   for(auto x : adj[i]){
+	               indegree[x]++;
+	            }
+	   
+	   }
+	   
+	   queue<int> q;
+	   
+	   for(int i = 0 ; i<V ; i++)
+	   {
+	       if(indegree[i] == 0) q.push(i);
+	   }
+
+         vector<int> ans;
+         
+         while(!q.empty())
+         {
+             int f = q.front();
+             q.pop();
+             
+             for(auto x : adj[f]){
+                 indegree[x]--;
+                 if(indegree[x] == 0){
+                     q.push(x);
+                 }
+             }
+             
+             ans.push_back(f);
+         }
+	   
+	   return ans;
 	    
 	}
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //{ Driver Code Starts.
 
