@@ -10,32 +10,67 @@ class Solution
     //from the source vertex S.
     vector <int> dijkstra(int V, vector<vector<int>> adj[], int S)
     {
-         priority_queue <pair<int , int>, vector<pair<int  ,int>>, greater<pair<int  , int>> > pq;
+        
+        // USING PRIORITY QUEUE
+        
+        //  priority_queue <pair<int , int>, vector<pair<int  ,int>>, greater<pair<int  , int>> > pq;
          
          
-         vector<int> dis(V , 1e9);
+        //  vector<int> dis(V , 1e9);
          
-         pq.push({0 , S});
+        //  pq.push({0 , S});
          
-         dis[S] = 0 ; 
+        //  dis[S] = 0 ; 
          
-         while(!pq.empty())
-         {
-             int dist = pq.top().first;
-             int node = pq.top().second;
-             pq.pop();
+        //  while(!pq.empty())
+        //  {
+        //      int dist = pq.top().first;
+        //      int node = pq.top().second;
+        //      pq.pop();
              
-             for(auto x : adj[node])
-             {
-                 if(dist + x[1] < dis[x[0]]){
+        //      for(auto x : adj[node])
+        //      {
+        //          if(dist + x[1] < dis[x[0]]){
+        //             dis[x[0]] = dist + x[1];
+        //             pq.push({dist + x[1] , x[0]});
+        //          }
+        //      }
+        //  }
+         
+         
+        //  return dis;
+        
+        
+        // NOW USING SET DATA STRUCTURE 
+        
+        set<pair<int , int>> st;
+        st.insert({0 , S});
+        
+        vector<int> dis(V , 1e8);
+        dis[S] = 0 ;
+        
+        while(!st.empty()){
+            
+            auto it = *(st.begin());
+            int dist = it.first;
+            int node = it.second;
+            st.erase(it);
+            
+            for(auto x : adj[node])
+            {
+                if(dist + x[1] < dis[x[0]]){
+                    if(dis[x[0]] != 1e8){
+                        st.erase({dis[x[0]] , x[0]});
+                    }
+                    
                     dis[x[0]] = dist + x[1];
-                    pq.push({dist + x[1] , x[0]});
-                 }
-             }
-         }
-         
-         
-         return dis;
+                    st.insert({dist+x[1] , x[0]});
+                }
+            }
+            
+        }
+        
+        return dis;
          
     }
 };
