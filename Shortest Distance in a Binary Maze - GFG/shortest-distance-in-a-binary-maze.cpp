@@ -20,7 +20,7 @@ class Solution {
                          
         vector<vector<int>> dis(n , vector<int> (m , 1e8));
         
-        grid[source.first][source.second] = 0;
+        dis[source.first][source.second] = 0;
         
         queue<pair<int , pair<int , int>>> q;
         
